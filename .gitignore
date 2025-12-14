@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-selfcheck.json
+
+# IDE
+.idea/
+.vscode/
+
+# Other
+*.log
+.DS_Store
+.env
+.env.*

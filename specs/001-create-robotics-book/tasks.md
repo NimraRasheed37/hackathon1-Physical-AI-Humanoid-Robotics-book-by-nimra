@@ -17,7 +17,7 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create the book's directory structure as defined in `specs/001-create-robotics-book/plan.md`.
+- [X] T001 Create the book's directory structure as defined in `specs/001-create-robotics-book/plan.md`.
 
 ---
 
@@ -25,8 +25,8 @@
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
-- [ ] T002 Write the `quickstart.md` guide in `specs/001-create-robotics-book/quickstart.md`.
-- [ ] T003 Write the `glossary.md` file in `book/glossary.md`.
+- [X] T002 Write the `quickstart.md` guide in `specs/001-create-robotics-book/quickstart.md`.
+- [X] T003 Write the `glossary.md` file in `book/glossary.md`.
 
 ---
 
@@ -38,9 +38,9 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Write the introduction chapter in `book/introduction/README.md`.
-- [ ] T005 [US1] Write the first module on ROS 2 fundamentals in `book/module-1-ros-fundamentals/README.md`.
-- [ ] T006 [US1] Create examples for the first module in `book/module-1-ros-fundamentals/examples/`.
+- [X] T004 [US1] Write the introduction chapter in `book/introduction/README.md`.
+- [X] T005 [US1] Write the first module on ROS 2 fundamentals in `book/module-1-ros-fundamentals/README.md`.
+- [X] T006 [US1] Create examples for the first module in `book/module-1-ros-fundamentals/examples/`.
 
 ---
 
