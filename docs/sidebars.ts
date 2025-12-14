@@ -20,7 +20,8 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Module 1: ROS Fundamentals',
       items: [
-        'module-1-ros-fundamentals',
+        'module-1-ros-fundamentals', // This is Chapter 1.1
+        // Future chapters for Module 1 can be added here
       ],
     },
     {
