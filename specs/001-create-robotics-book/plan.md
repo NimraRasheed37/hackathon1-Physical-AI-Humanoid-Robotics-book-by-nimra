@@ -5,7 +5,7 @@
 
 ## Summary
 
-This plan outlines the creation of a comprehensive technical book, "Physical AI & Humanoid Robotics: From Digital Intelligence to Embodied Systems". The book will explain Physical AI and embodied intelligence, teach ROS 2 fundamentals, cover robot simulation using Gazebo, Unity, and NVIDIA Isaac Sim, introduce Vision-Language-Action (VLA), and guide readers through a full humanoid robot capstone project.
+This plan outlines the creation of a comprehensive technical book, "Physical AI & spec Robotics: From Digital Intelligence to Embodied Systems". The book will explain Physical AI and embodied intelligence, teach ROS 2 fundamentals, cover robot simulation using Gazebo, Unity, and NVIDIA Isaac Sim, introduce Vision-Language-Action (VLA), and guide readers through a full humanoid robot capstone project.
 
 ## Technical Context
 
@@ -68,5 +68,3 @@ book/
 ```
 
 **Structure Decision**: The book will be organized into a `book` directory, with each chapter and module in its own subdirectory. This follows the "one chapter per folder" rule from the constitution and provides a clear structure for the content. The `specs` directory will contain the planning and design artifacts for the feature.
-
-
