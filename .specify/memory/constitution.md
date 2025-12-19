@@ -1,67 +1,55 @@
-<!--
----
-sync-impact-report:
-  version_change: "0.0.0 → 1.0.0"
-  modified_principles:
-    - "Principle 1: Clarity and Structure"
-    - "Principle 2: Concept-First Explanations"
-    - "Principle 3: Simple and Professional Language"
-    - "Principle 4: Real-World Examples"
-    - "Principle 5: Adherence to Technical Standards"
-    - "Principle 6: Standardized Output Format"
-  added_sections:
-    - "Technical Standards"
-    - "Output Format"
-  removed_sections:
-    - None
-  templates_updated:
-    - "(.specify/templates/plan-template.md, ⚠ pending)"
-    - "(.specify/templates/spec-template.md, ⚠ pending)"
-    - "(.specify/templates/tasks-template.md, ⚠ pending)"
-  todos:
-    - "Review and update dependent templates to align with the new constitution."
----
--->
-# Physical AI & Humanoid Robotics Book Constitution
+# [PROJECT_NAME] Constitution
+<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
 ## Core Principles
 
-### I. Clarity and Structure
-Writing must be clear, structured, and beginner-to-intermediate friendly. Use headings, subheadings, diagrams descriptions, and code blocks to organize content effectively.
+### [PRINCIPLE_1_NAME]
+<!-- Example: I. Library-First -->
+[PRINCIPLE_1_DESCRIPTION]
+<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-### II. Concept-First Explanations
-Explain concepts before introducing tools. Readers should understand the "why" behind the "how."
+### [PRINCIPLE_2_NAME]
+<!-- Example: II. CLI Interface -->
+[PRINCIPLE_2_DESCRIPTION]
+<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
 
-### III. Simple and Professional Language
-Keep language simple, professional, and accessible. Avoid unnecessary jargon and explain technical terms clearly when they are first used.
+### [PRINCIPLE_3_NAME]
+<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+[PRINCIPLE_3_DESCRIPTION]
+<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
 
-### IV. Real-World Examples
-Use real-world robotics examples to illustrate concepts and make them relatable and practical.
+### [PRINCIPLE_4_NAME]
+<!-- Example: IV. Integration Testing -->
+[PRINCIPLE_4_DESCRIPTION]
+<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
 
-### V. Adherence to Technical Standards
-All technical content must adhere to the specified standards to ensure consistency and relevance.
+### [PRINCIPLE_5_NAME]
+<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+[PRINCIPLE_5_DESCRIPTION]
+<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
-### VI. Standardized Output Format
-Follow the defined output format for all content to maintain a uniform structure across the book.
+### [PRINCIPLE_6_NAME]
 
-## Technical Standards
 
-The following technical standards are adopted for all projects and examples:
-- **ROS Version:** ROS 2 (Humble)
-- **Programming Language:** Python (rclpy)
-- **Simulation Platforms:** Gazebo, Unity, NVIDIA Isaac Sim
-- **Voice Input:** OpenAI Whisper
-- **AI Concepts:** LLM-based planning will be explained conceptually, without exposing any secrets or keys.
+[PRINCIPLE__DESCRIPTION]
 
-## Output Format
+## [SECTION_2_NAME]
+<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-All content will be produced in the following format:
-- **File Type:** Markdown (.md) files
-- **Organization:** One chapter per folder
-- **Entry Point:** Each chapter folder will contain a `README.md` file as its main entry point.
+[SECTION_2_CONTENT]
+<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+
+## [SECTION_3_NAME]
+<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+
+[SECTION_3_CONTENT]
+<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
 ## Governance
+<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-This constitution guides the educational content, structure, and technical standards for the book. All contributions must align with these principles to ensure a high-quality, accessible learning experience. Amendments require review and approval to maintain consistency.
+[GOVERNANCE_RULES]
+<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-14 | **Last Amended**: 2025-12-14
+**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
