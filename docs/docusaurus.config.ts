@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Physical AI & Humanoid Robotics',
+  title: 'Physical AI & Humanoid Robotics: From Digital Intelligence to Embodied Systems',
   tagline: 'From Digital Intelligence to Embodied Systems',
   favicon: 'img/favicon.ico',
 
@@ -41,10 +41,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          path: '../book', // Add this line to specify the new docs path
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/NimraRasheed37/hackathon1-Physical-AI-Humanoid-Robotics-book-by-nimra/tree/main/',
         },
         blog: {
           showReadingTime: true,
@@ -75,7 +76,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'Physical AI & Humanoid Robotics',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
@@ -100,12 +101,7 @@ const config: Config = {
       links: [
         {
           title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
+          items: [], // Removed 'Tutorial' link
         },
         {
           title: 'Community',
