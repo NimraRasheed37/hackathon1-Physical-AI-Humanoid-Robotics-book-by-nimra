@@ -15,7 +15,7 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <img className={styles.heroImg} src="/AI-textbook/img/undraw_docusaurus_react.svg" alt="Robot themed imagery" />
+        {/* <img className={styles.heroImg} src="/AI-textbook/img/undraw_docusaurus_react.svg" alt="Robot themed imagery" /> */}
         <Heading as="h1" className="hero__title">
           {bookTitle}
         </Heading>
