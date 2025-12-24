@@ -1,0 +1,75 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 6rem 0; /* Increased padding for better visual balance */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* Black-purple-white gradient background */
+  background: linear-gradient(135deg, #000000 0%, #800080 50%, #ffffff 100%);
+  color: var(--ifm-color-white); /* Ensures text is readable on dark background, default to white */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+}
+
+.hero__title {
+  font-size: 3.5rem; /* Larger title for emphasis */
+  margin-bottom: 1rem;
+  color: var(--ifm-color-white); /* Ensure title color is white */
+  z-index: 1; /* Ensure text is above image if positioned absolutely */
+}
+
+.hero__subtitle {
+  font-size: 1.5rem; /* Clear subtitle */
+  margin-bottom: 2rem;
+  color: var(--ifm-color-white); /* Ensure subtitle color is white */
+  z-index: 1;
+}
+
+.heroImg {
+  width: 200px; /* Adjust size as needed */
+  height: 200px;
+  margin-bottom: 2rem; /* Space between image and title */
+  z-index: 1;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 3rem 0;
+  }
+  .hero__title {
+    font-size: 2.5rem;
+  }
+  .hero__subtitle {
+    font-size: 1.2rem;
+  }
+  .heroImg {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Style for the "Start Reading" button to match the theme */
+.button--secondary.button--lg {
+  background-color: var(--ifm-color-primary); /* Use a primary color from theme */
+  color: var(--ifm-color-white);
+  border: 1px solid var(--ifm-color-primary-darker);
+  transition: background-color 0.3s ease;
+}
+
+.button--secondary.button--lg:hover {
+  background-color: var(--ifm-color-primary-dark);
+  text-decoration: none;
+}
