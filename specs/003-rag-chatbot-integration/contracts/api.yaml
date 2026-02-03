@@ -1,0 +1,331 @@
+openapi: 3.1.0
+info:
+  title: RAG Chatbot API
+  description: API for the Physical AI & Humanoid Robotics textbook chatbot
+  version: 1.0.0
+  contact:
+    name: API Support
+
+servers:
+  - url: https://api.example.com
+    description: Production server
+  - url: http://localhost:8000
+    description: Local development
+
+tags:
+  - name: chat
+    description: Chat endpoints for Q&A
+  - name: admin
+    description: Administrative operations
+  - name: health
+    description: Health and status checks
+
+paths:
+  /api/health:
+    get:
+      tags:
+        - health
+      summary: Health check endpoint
+      description: Returns service health status
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /api/chat/query:
+    post:
+      tags:
+        - chat
+      summary: Submit a question
+      description: Send a question and receive an AI-generated answer with citations
+      operationId: submitQuery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+            examples:
+              simple_question:
+                summary: Simple question example
+                value:
+                  query: "What is inverse kinematics?"
+                  session_id: "session_1706900000_abc123"
+      responses:
+        '200':
+          description: Successful response with answer and citations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '400':
+          description: Invalid request (empty query, too long, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/chat/query-with-context:
+    post:
+      tags:
+        - chat
+      summary: Submit a question with selected text context
+      description: Send a question along with user-selected text for more targeted answers
+      operationId: submitQueryWithContext
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedTextChatRequest'
+            examples:
+              context_question:
+                summary: Question with selected text
+                value:
+                  query: "Can you explain this in simpler terms?"
+                  selected_text: "Sensor fusion combines data from multiple sensors using Kalman filtering..."
+                  session_id: "session_1706900000_abc123"
+      responses:
+        '200':
+          description: Successful response with contextual answer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/admin/embed:
+    post:
+      tags:
+        - admin
+      summary: Trigger book embedding
+      description: Re-embed all book content (admin operation)
+      operationId: triggerEmbedding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddingRequest'
+      responses:
+        '202':
+          description: Embedding process started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddingResponse'
+        '401':
+          description: Unauthorized (missing or invalid admin key)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - adminApiKey: []
+
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: The user's question
+          example: "What is inverse kinematics?"
+        session_id:
+          type: string
+          nullable: true
+          description: Optional session ID for conversation continuity
+          example: "session_1706900000_abc123"
+
+    SelectedTextChatRequest:
+      type: object
+      required:
+        - query
+        - selected_text
+      properties:
+        query:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: The user's question
+        selected_text:
+          type: string
+          maxLength: 2000
+          description: Text selected by user for context
+        context_metadata:
+          type: object
+          nullable: true
+          description: Optional metadata about selection location
+          properties:
+            chapter:
+              type: string
+            section:
+              type: string
+        session_id:
+          type: string
+          nullable: true
+          description: Optional session ID
+
+    ChatResponse:
+      type: object
+      required:
+        - answer
+        - citations
+        - session_id
+        - timestamp
+        - model_used
+      properties:
+        answer:
+          type: string
+          description: AI-generated response
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+          description: Sources used for the answer
+        session_id:
+          type: string
+          description: Session identifier
+        timestamp:
+          type: string
+          format: date-time
+          description: Response timestamp
+        model_used:
+          type: string
+          description: AI model identifier
+          example: "gpt-4o-mini"
+
+    Citation:
+      type: object
+      required:
+        - chunk_id
+        - content
+        - chapter
+        - similarity_score
+      properties:
+        chunk_id:
+          type: string
+          description: Unique identifier for the source chunk
+        content:
+          type: string
+          maxLength: 200
+          description: Preview of the source content
+        chapter:
+          type: string
+          description: Chapter name
+        section:
+          type: string
+          nullable: true
+          description: Section name if available
+        similarity_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Relevance score (0-1)
+
+    EmbeddingRequest:
+      type: object
+      properties:
+        force_reembed:
+          type: boolean
+          default: false
+          description: Force re-embedding even if content unchanged
+        book_path:
+          type: string
+          default: "./docs"
+          description: Path to book content
+
+    EmbeddingResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [started, completed, failed]
+        message:
+          type: string
+        chunks_processed:
+          type: integer
+          nullable: true
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "healthy"
+        service:
+          type: string
+          example: "RAG Chatbot API"
+        version:
+          type: string
+          example: "1.0.0"
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: "validation_error"
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: object
+          nullable: true
+          description: Additional error context
+
+  securitySchemes:
+    adminApiKey:
+      type: apiKey
+      in: header
+      name: X-Admin-Key
+      description: Admin API key for protected operations
