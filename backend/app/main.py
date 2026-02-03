@@ -64,6 +64,7 @@ def create_app() -> FastAPI:
         "http://localhost:3001",
         "http://127.0.0.1:3000",
         "http://127.0.0.1:3001",
+        "https://hackathon1-physical-ai-humanoid-rob-delta.vercel.app/",
     ]
 
     # Add production origins if configured
