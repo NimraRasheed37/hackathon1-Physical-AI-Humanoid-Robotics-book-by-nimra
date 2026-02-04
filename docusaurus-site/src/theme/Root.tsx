@@ -6,6 +6,7 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 interface RootProps {
   children: React.ReactNode;
@@ -17,8 +18,6 @@ interface Message {
   content: string;
   isLoading?: boolean;
 }
-
-const API_URL = 'http://localhost:8001';
 
 // Modern gradient theme colors
 const theme = {
@@ -37,6 +36,9 @@ const theme = {
 };
 
 function ChatWidget() {
+  const { siteConfig } = useDocusaurusContext();
+  const apiUrl = (siteConfig.customFields?.apiBaseUrl as string) || 'http://localhost:8001';
+
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -74,7 +76,7 @@ function ChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/api/v1/chat`, {
+      const response = await fetch(`${apiUrl}/api/v1/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: userMessage.content }),

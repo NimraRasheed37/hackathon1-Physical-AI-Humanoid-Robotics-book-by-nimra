@@ -2,9 +2,17 @@
  * Frontend configuration for RAG Chatbot.
  */
 
+// Get API URL from window (set by Root.tsx from Docusaurus customFields)
+function getApiBaseUrl(): string {
+  if (typeof window !== 'undefined' && (window as any).__RAG_API_BASE_URL__) {
+    return (window as any).__RAG_API_BASE_URL__;
+  }
+  return 'http://localhost:8001';
+}
+
 export const config = {
   // API Configuration
-  apiBaseUrl: process.env.REACT_APP_API_URL || 'http://localhost:8001',
+  apiBaseUrl: getApiBaseUrl(),
   apiVersion: 'v1',
 
   // Chat Configuration

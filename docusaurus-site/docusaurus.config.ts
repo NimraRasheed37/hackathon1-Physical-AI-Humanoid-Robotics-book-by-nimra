@@ -9,6 +9,11 @@ const config: Config = {
   tagline: 'A book on building AI-native applications',
   favicon: 'img/favicon.ico',
 
+  // Custom fields accessible via useDocusaurusContext()
+  customFields: {
+    apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:8001',
+  },
+
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
